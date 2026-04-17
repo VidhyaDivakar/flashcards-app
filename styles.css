@@ -3,8 +3,11 @@
     --secondary-color: #2ecc71;
     --text-color: #333;
     --bg-color: #f4f4f4;
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+    --footer-bg: #2c3e50;
     --font-family: Arial, sans-serif;
-    --border-radius: 5px;
+    --border-radius: 0.75rem;
     --padding: 1rem;
 }
 
@@ -14,13 +17,17 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: grid;
     grid-template-areas:
         "header header"
         "sidebar main"
         "footer footer";
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: minmax(220px, 240px) minmax(0, 1fr);
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     font-family: var(--font-family);
@@ -33,32 +40,37 @@ header {
     background-color: var(--primary-color);
     color: white;
     padding: var(--padding);
-
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-header {
-    text-align: left;
+header h1 {
+    font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
 .nav-links {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     list-style: none;
-    gap: 1.5rem;
 }
 
 .nav-links a {
     color: #fff;
     text-decoration: none;
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.5rem;
 }
 
-.nav-links a:hover {
-    opacity: 0.7;
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 aside {
@@ -67,41 +79,112 @@ aside {
     padding: var(--padding);
 }
 
+aside h2 {
+    margin-bottom: 1rem;
+}
+
 aside ul {
     list-style: none;
 }
 
 aside li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 0.8rem;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+aside li:hover,
+aside li:focus-visible {
+    background: rgba(255, 255, 255, 0.25);
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 3px;
 }
 
 main {
     grid-area: main;
     padding: var(--padding);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
 }
 
 .card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     padding: var(--padding);
-    background: white;
+    background: var(--card-bg);
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 footer {
     grid-area: footer;
-    background-color: var(--primary-color);
+    background-color: var(--footer-bg);
     color: white;
     text-align: center;
     padding: var(--padding);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+button,
+a {
+    font: inherit;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+a:hover {
+    transform: translateY(-1px);
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #111827;
+        --text-color: #f8fafc;
+        --card-bg: #1f2937;
+        --border-color: #334155;
+        --primary-color: #60a5fa;
+        --secondary-color: #22c55e;
+        --footer-bg: #0f172a;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    header,
+    footer {
+        background-color: var(--primary-color);
+    }
+
+    .nav-links a,
+    aside li {
+        color: #f8fafc;
+    }
+}
+
+@media (max-width: 900px) {
     body {
         grid-template-areas:
             "header"
@@ -110,5 +193,9 @@ footer {
             "footer";
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr auto;
+    }
+
+    main {
+        grid-template-columns: 1fr;
     }
 }

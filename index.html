@@ -12,7 +12,7 @@
     <header>
         <div class="header-container">
             <h1>Flashcards App</h1>
-            <nav>
+            <nav aria-label="Primary navigation">
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Decks</a></li>
@@ -27,14 +27,20 @@
     <aside id="sidebar">
         <h2>Decks</h2>
         <ul>
-            <li>Deck 1</li>
-            <li>Deck 2</li>
+            <li><button type="button">Deck 1</button></li>
+            <li><button type="button">Deck 2</button></li>
+            <li><button type="button">Deck 3</button></li>
         </ul>
     </aside>
     <main id="main">
         <div class="card">
-            <h3>Question</h3>
-            <p>Answer</p>
+            <h3>Flashcard</h3>
+            <p><strong>Question:</strong> What is the capital of France?</p>
+            <p><strong>Answer:</strong> Paris</p>
+            <div class="card-actions">
+                <button type="button">Flip</button>
+                <button type="button">Next</button>
+            </div>
         </div>
     </main>
     <footer>
