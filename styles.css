@@ -33,7 +33,32 @@ header {
     background-color: var(--primary-color);
     color: white;
     padding: var(--padding);
-    text-align: center;
+
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    text-align: left;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
 }
 
 aside {
